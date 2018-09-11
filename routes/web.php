@@ -24,5 +24,5 @@ Route::group(['prefix' => 'aluno'], function() {
     Route::get('criar', 'AlunoController@criar');
     Route::get('{id}/editar', 'AlunoController@editar');
     Route::get('{id}/remover', 'AlunoController@remover');
-    Route::get('salvar', 'AlunoController@salvar');
+    Route::post('salvar', 'AlunoController@salvar');
 });

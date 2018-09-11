@@ -3,29 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Aluno;
+use App\Curso;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
     public function listar()
     {
-        return Aluno::all();
+		return view('listar', ['alunos' => Aluno::all()]);
     }
     
     public function criar()
     {
-        return new Aluno();
+        return view('criar', ['cursos' => Curso::all()]);
     }
     
     public function editar($id)
     {
-        $aluno = Aluno::findOrFail($id);
-
-//        if (!$aluno) {
-//            abort(404, "Aluno não encontrado");
-//        }
-        
-        return $aluno;
+        return view('editar',['aluno' => Aluno::findOrFail($id), 'cursos' => Curso::all()]);
     }
     
     public function remover($id)
@@ -45,6 +40,7 @@ class AlunoController extends Controller
         
         $aluno->matricula = $request->matricula;
         $aluno->nome = $request->nome;
+        $aluno->curso_id = $request->curso_id;
         $aluno->save();
         return redirect('aluno/listar');
     }
